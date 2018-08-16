@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var {ObjectID} = require('mongodb');
 
 //imports
 var {mongoose} = require('./db/mongoose');
@@ -11,7 +12,6 @@ var app = express();
 app.use(bodyParser.json());
 
 app.post('/todos', (req, res) => {
-
     //Testing
     //console.log(req.body);
     var todo = new Todo({
@@ -31,6 +31,26 @@ app.get('/todos' , (req,res) => {
   }, (e) =>{
       res.status(400).send(e);
   });
+});
+
+//GET /todos/12345
+app.get('/todos/:id',(req, res) => {
+  //request..params is an object{Key,Value} pair
+  //res.send(req.params);
+  var  id = req.params.id;
+  //validate the ObjectID - using isValid
+  if(!ObjectID.isValid(id)){
+    return res.status(404).send();
+  }
+  Todo.findById(id).then((todo) => {
+      if(!todo){
+        return res.status(404),send();
+      }
+      res.send({todo});
+  }).catch((e) =>  {
+    res.status(400).send();
+  });
+
 });
 
 app.listen(3000,()=>{
