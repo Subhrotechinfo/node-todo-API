@@ -56,15 +56,12 @@ app.get('/todos/:id',(req, res) => {
 });
 
 app.delete('/todos/:id',(req,res) => {
-
   //get the id
   var id = req.params.id;
-
   //validate the id --> not valid return 404
   if(!ObjectID.isValid(id)){
     return res.status(404).send();
   }
-
   //remove todo by id
     Todo.findByIdAndRemove(id).then((todo) => {
       //success
@@ -73,7 +70,7 @@ app.delete('/todos/:id',(req,res) => {
           return res.status(404).send();
         }
         //if doc , send 200
-        res.status(200).send(todo);
+        res.status(200).send({todo});
     }).catch(() => {
       //error
         //400 with empty body
