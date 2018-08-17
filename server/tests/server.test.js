@@ -6,22 +6,23 @@ const {app} = require('./../server');
 const {Todo} = require('./../models/todo');
 
 //make an array of dummy todos
-const todos =[{
-  _id:new ObjectID(),
-  text:'first text todos'
-},{
-  _id:new ObjectID(),
-  text: 'Second text todos'
+const todos = [{
+  _id: new ObjectID(),
+  text: 'First test todo'
+}, {
+  _id: new ObjectID(),
+  text: 'Second test todo'
 }];
 
 beforeEach((done) => {
   Todo.remove({}).then(() => {
-      Todo.insertMany(todos);
+    return Todo.insertMany(todos);
   }).then(() => done());
 });
 
 describe('POST /todos', () => {
   it('should create a new todo', (done) => {
+
     var text = 'Test todo text';
     request(app)
       .post('/todos')
@@ -59,7 +60,7 @@ describe('POST /todos', () => {
    });
 });
 
-describe('GET /todos',()=>{
+describe('GET /todos',() => {
   it('Should get all todos',(done) => {
 
     request(app)
@@ -83,7 +84,7 @@ describe('GET /todos/:id',() => {
         .end(done);
   });
 
-    it('should return 404 if todo not found', (done) => {
+     it('should return 404 if todo not found', (done) => {
       //make sure you get a 404 back
       //testing
       //var hexId =  '1231556';
@@ -91,7 +92,7 @@ describe('GET /todos/:id',() => {
       //console.log(hexId);
       request(app)
       .get(`/todos/${hexId}`)
-      .expect(404)
+      .expect(400)
       .end(done);
   });
 
@@ -101,5 +102,4 @@ describe('GET /todos/:id',() => {
         .expect(404)
         .end(done);
   });
-
 });

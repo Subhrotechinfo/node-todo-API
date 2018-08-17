@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha server/**/*.test.js",
+    "start":"node server/server.js",
+    "test": "mocha --timeout 9000 server/**/*.test.js",
     "test-watch": "nodemon --exec npm test"
   },
+      "engines":{
+          "node":"10.8.0"
+      },
   "author": "",
   "license": "ISC",
   "dependencies": {
