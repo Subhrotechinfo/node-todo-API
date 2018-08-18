@@ -17,7 +17,6 @@
 ```
 ##### How to run :runner:
 
-- `commands to be added`
 - clone the repository run `git clone repoUrl` by using command prompt [git](https://git-scm.com/) .      
 - run `npm install` to add all the dependencies to the local node_modules using [npm](https://www.npmjs.com/) .
 - run using [node](https://nodejs.org/en/) `node /server/server.js` / [nodemon](https://www.npmjs.com/package/nodemon) `nodemon /server/server.js`  to start the application use [Postman](https://www.getpostman.com/apps) and send, fetch, delete, update todos/users.
