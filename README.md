@@ -18,7 +18,13 @@
 ##### How to run :runner:
 
 - `commands to be added`
-- run the test cases directly `npm run test` or with `nodemon` by using `npm run test-watch`
+- clone the repository run `git clone repoUrl` by using command prompt [git](https://git-scm.com/) .      
+- run `npm install` to add all the dependencies to the local node_modules using [npm](https://www.npmjs.com/) .
+- run the test cases directly `npm run test` or with [nodemon](https://www.npmjs.com/package/nodemon) by using `npm run test-watch` .
+- 
+
+
+
 
 ### Author
 :alien: | Subhro Chatterjee | :copyright: | 2018    
