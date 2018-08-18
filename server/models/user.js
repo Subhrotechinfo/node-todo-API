@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
-
 const _ = require('lodash');
+const bcrypt = require('bcryptjs');
 
 var UserSchema = new mongoose.Schema(
   {
@@ -72,6 +72,28 @@ UserSchema.statics.findByToken = function (token) {
       'tokens.access': 'auth'
   });
 };
+
+UserSchema.pre('save',function (next){
+  var user = this;
+  if(user.isModified('password')){
+    //user.password
+    //console.log(user.password);
+    bcrypt.genSalt(10,(err,salt) => {
+        bcrypt.hash(user.password,salt,(err,hash) => {
+          //console.log(hash);
+          //update the user document
+          //user.password = hash;
+          user.password = hash;
+          next();
+        });
+    });
+  }else{
+    next();
+  }
+
+});
+
+
 
 var User = mongoose.model('User',UserSchema );
 module.exports = {User}
