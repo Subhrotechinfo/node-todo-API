@@ -45,7 +45,7 @@ UserSchema.methods.toJSON = function (){
 UserSchema.methods.generateAuthToken = function (){
     var user = this;
     var access = 'auth';
-    var token = jwt.sign({_id:user._id.toHexString(),access},'salt123').toString();
+    var token = jwt.sign({_id:user._id.toHexString(),access},process.env.JWT_SECRET).toString();
 
     user.tokens  = user.tokens.concat([{access,token}]);
 
@@ -66,13 +66,12 @@ UserSchema.methods.removeToken = function (token){
 
 };
 
-
 UserSchema.statics.findByToken = function (token) {
   var User = this;
   var decoded;
 
   try{
-    decoded = jwt.verify(token,'salt123');
+    decoded = jwt.verify(token,process.env.JWT_SECRET);
   }catch(e){
     // return new Promise((resolve,reject) => {
     //   reject();
@@ -104,11 +103,6 @@ UserSchema.statics.findByCredentials = function (email,password){
   });
 };
 
-
-
-
-
-
 UserSchema.pre('save',function (next){
   var user = this;
   if(user.isModified('password')){
@@ -126,10 +120,7 @@ UserSchema.pre('save',function (next){
   }else{
     next();
   }
-
 });
-
-
 
 var User = mongoose.model('User',UserSchema );
 module.exports = {User}
