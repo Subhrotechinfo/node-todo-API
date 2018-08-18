@@ -18,6 +18,7 @@
 ##### How to run :runner:
 
 - `commands to be added`
+- run the test cases directly `npm run test` or with `nodemon` by using `npm run test-watch`
 
 ### Author
 :alien: | Subhro Chatterjee | :copyright: | 2018    
