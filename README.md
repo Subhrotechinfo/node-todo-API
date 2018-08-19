@@ -12,7 +12,7 @@
 ### Tech Stack
 ```
 - NodeJs
-- Mongodb ( [mlab](https://mlab.com/) - DB Service Provider)
+- Mongodb [mlab](https://mlab.com/) (DB Service Provider)
 - Expressjs
 ```
 ##### How to run :runner:
