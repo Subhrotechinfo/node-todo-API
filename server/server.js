@@ -17,9 +17,9 @@ var app = express();
 const port = process.env.PORT;
 app.use(bodyParser.json());
 
-app.get('/',(req,res) => {
-  //add the home page
-});
+// app.get('/',(req,res) => {
+//   //add the home page
+// });
 
 //POST
 app.post('/todos', authenticate,(req, res) => {
