@@ -6,6 +6,7 @@
   4. Deletes data from the mlab database.
   5. Login & logout support also provided based on token authorization.
   6. Assertions has also been provided.
+  7. Async version added 
   ```
 ```
   A full CRUD application build in Nodejs.
